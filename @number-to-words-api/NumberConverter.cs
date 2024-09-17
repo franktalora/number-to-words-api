@@ -16,36 +16,48 @@ public class NumberConverter
   {
     if (number == 0) return "ZERO";
 
-    int numberIndex = number - 1;
-
-    // Get ones (1 to 9)
-    if (number <= 9) return NumberMaps.Ones[numberIndex];
-
-    // Get teens (11 to 19)
-    if (number >= 11 && number <= 19) return NumberMaps.Teens[numberIndex % 10];
-
-    // Get multiple of ten up to 90 (eg. 10, 50, 90)
-    if (number <= 90 && IsMultipleOfTen(number)) return NumberMaps.Tens[numberIndex / 10];
-
-    // Get two digits up to 99 (eg. 12, 25, 87)
-    if (number <= 99)
-    {
-      int rounded = number / 10; // Round down to the nearest ten
-      int remainder = number % 10;
-      string firstPart = NumberMaps.Tens[rounded - 1];
-      string secondPart = NumberMaps.Ones[remainder - 1];
-      return $"{firstPart}-{secondPart}";
-    }
+    // int numberIndex = number - 1;
+    string words = "";
 
     // Get hundreds
     if (number >= 100)
     {
       int rounded = number / 100; // Round down to the nearest one
       string firstPart = NumberMaps.Ones[rounded - 1];
-      return $"{firstPart} HUNDRED";
+      words += $"{firstPart} HUNDRED";
+
+      int remainder = number % 100;
+      if (remainder > 0)
+      {
+        words += " AND ";
+        number = remainder;
+      }
+      else return words;
     }
 
-    return "TEST";
+    // Get ones (1 to 9)
+    if (number <= 9) words += NumberMaps.Ones[number - 1];
+
+    // Get teens (11 to 19)
+    else if (number >= 11 && number <= 19) words += NumberMaps.Teens[(number - 1) % 10];
+
+    // Get multiple of ten up to 90 (eg. 10, 50, 90)
+    else if (number <= 90 && IsMultipleOfTen(number))
+    {
+      words += NumberMaps.Tens[(number - 1) / 10];
+    }
+
+    // Get two digits up to 99 (eg. 22, 55, 87)
+    else if (number >= 21 && number <= 99)
+    {
+      int rounded = number / 10; // Round down to the nearest ten
+      int remainder = number % 10;
+      string firstPart = NumberMaps.Tens[rounded - 1];
+      string secondPart = NumberMaps.Ones[remainder - 1];
+      words += $"{firstPart}-{secondPart}";
+    }
+
+    return words;
   }
 
   private class NumberMaps
