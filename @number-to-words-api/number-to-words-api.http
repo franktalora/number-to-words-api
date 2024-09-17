@@ -1,15 +1,15 @@
 @HostAddress = http://localhost:5290
-@Path = {{HostAddress}}/number-to-words
+@Path = {{HostAddress}}/number-to-words-api/convert-price
 
 # Will convert a number to words
 GET {{Path}}/123
-// Result: ONE-HUNDRED AND TWENTY-THREE
+// Result: ONE HUNDRED AND TWENTY-THREE
 
 ###
 
 # Will return a negative number
 GET {{Path}}/-789
-// Result: NEGATIVE SEVEN-HUNDRED AND EIGHTY-NINE
+// Result: NEGATIVE SEVEN HUNDRED AND EIGHTY-NINE
 
 ###
 

@@ -1,26 +1,21 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+namespace NumberToWordsAPI;
 
-app.UseHttpsRedirection();
-
-app.MapGet("/number-to-words/{number}", (int number) =>
+public class Program
 {
-  string words = NumberToWords(number);
-  return new { number, words };
-})
-.WithName("ConvertNumberToWords");
+  public static void Main(string[] args)
+  {
+    var builder = WebApplication.CreateBuilder(args);
+    var app = builder.Build();
 
-app.Run();
+    app.UseHttpsRedirection();
 
-string NumberToWords(int number)
-{
-  if (number == 0) return "ZERO";
-  if (number < 0) return $"MINUS {NumberToWords(number)}";
+    app.MapGet("/number-to-words-api/convert-price/{number}", (int number) =>
+    {
+      string words = NumberConverter.ConvertPriceToWords(number);
+      return new { number, words };
+    })
+    .WithName("ConvertPriceToWords");
 
-  return ConvertToWords(number);
-}
-
-string ConvertToWords(int number)
-{
-  return "ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS";
+    app.Run();
+  }
 }

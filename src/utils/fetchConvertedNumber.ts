@@ -9,7 +9,7 @@ export const fetchConvertedNumber = async (numberToConvert: string) => {
   }
 
   const response = await fetch(
-    `http://localhost:5290/number-to-words/${numberToConvert}`
+    `http://localhost:5290/number-to-words-api/convert-price/${numberToConvert}`
   );
   if (!response.ok) {
     throw new Error("Failed to convert number");
