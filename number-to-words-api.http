@@ -1,0 +1,6 @@
+@number_to_words_api_HostAddress = http://localhost:5290
+
+GET {{number_to_words_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
