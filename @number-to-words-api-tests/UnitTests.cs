@@ -30,7 +30,7 @@ public class UnitTests
     Assert.Equal("FIFTEEN", ConvertNumberToWords(15));
     Assert.Equal("NINETEEN", ConvertNumberToWords(19));
   }
-  
+
   [Fact]
   public void NumberToWords_ShouldConvertNumber_Tens()
   {
@@ -39,7 +39,7 @@ public class UnitTests
     Assert.Equal("FIFTY", ConvertNumberToWords(50));
     Assert.Equal("NINETY", ConvertNumberToWords(90));
   }
-  
+
   [Fact]
   public void NumberToWords_ShouldConvertNumber_TwoDigits()
   {
@@ -49,7 +49,7 @@ public class UnitTests
     Assert.Equal("EIGHTY-TWO", ConvertNumberToWords(82));
     Assert.Equal("NINETY-NINE", ConvertNumberToWords(99));
   }
-  
+
   [Fact]
   public void NumberToWords_ShouldConvertNumber_Hundreds()
   {
@@ -107,5 +107,14 @@ public class UnitTests
     Assert.Equal("FORTY-FIVE CENTS", ConvertPriceToWords(.45));
     Assert.Equal("FORTY-FIVE CENTS", ConvertPriceToWords(00.45));
     Assert.Equal("FORTY-FIVE CENTS", ConvertPriceToWords(00.45272));
+  }
+
+  [Fact]
+  // Will return an error for non-numbers
+  public void NumberToWords_ShouldThrow_ForNonNumber()
+  {
+    object invalidInput = "invalid";
+    Assert.Throws<InvalidCastException>(() => ConvertNumberToWords((int)invalidInput));
+    Assert.Throws<InvalidCastException>(() => ConvertPriceToWords((int)invalidInput));
   }
 }
