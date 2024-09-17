@@ -9,7 +9,7 @@ public class Program
 
     app.UseHttpsRedirection();
 
-    app.MapGet("/number-to-words-api/convert-price/{number}", (int number) =>
+    app.MapGet("/number-to-words-api/convert-price/{number}", (double number) =>
     {
       string words = NumberConverter.ConvertPriceToWords(number);
       return new { number, words };
