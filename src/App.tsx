@@ -18,28 +18,25 @@ const handleConvert = async (numberToConvert: string) => {
 
 function App() {
   const [number, setNumber] = useState("");
+  const [words, setWords] = useState("");
 
   const getConvertedNumber = async () => {
     const convertedData = await handleConvert(number);
-    console.log("convertedData", convertedData)
-    return convertedData
+    console.log("convertedData", convertedData);
+    setWords(convertedData.words);
   };
 
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="p-2">
-        <input
-          type="number"
-          placeholder="Enter a number"
-          value={number}
-          onChange={(e) => setNumber(e.target.value)}
-        />
-        <button onClick={getConvertedNumber}>Convert</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
+      <h1>Convert numbers to words</h1>
+      <input
+        type="number"
+        placeholder="Enter a number"
+        value={number}
+        onChange={(e) => setNumber(e.target.value)}
+      />
+      <button onClick={getConvertedNumber}>Convert</button>
+      <p>{words}</p>
     </>
   );
 }
