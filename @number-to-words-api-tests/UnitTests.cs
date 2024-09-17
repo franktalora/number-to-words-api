@@ -54,9 +54,10 @@ public class UnitTests
   public void NumberToWords_ShouldConvertNumber_Hundreds()
   {
     Assert.Equal("ONE HUNDRED", ConvertNumberToWords(100));
+    Assert.Equal("FIVE HUNDRED", ConvertNumberToWords(500));
+    Assert.Equal("NINE HUNDRED", ConvertNumberToWords(900));
     Assert.Equal("ONE HUNDRED AND TWENTY-THREE", ConvertNumberToWords(123));
     Assert.Equal("TWO HUNDRED AND THIRTY", ConvertNumberToWords(230));
-    Assert.Equal("FIVE HUNDRED", ConvertNumberToWords(500));
     Assert.Equal("FIVE HUNDRED AND ELEVEN", ConvertNumberToWords(511));
     Assert.Equal("NINE HUNDRED AND NINETY-NINE", ConvertNumberToWords(999));
   }
