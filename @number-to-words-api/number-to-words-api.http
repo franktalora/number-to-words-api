@@ -1,6 +1,19 @@
-@number_to_words_api_HostAddress = http://localhost:5290
+@HostAddress = http://localhost:5290
+@Path = {{HostAddress}}/number-to-words
 
-GET {{number_to_words_api_HostAddress}}/weatherforecast/
-Accept: application/json
+# Will convert a number to words
+GET {{Path}}/123
+// Result: ONE-HUNDRED AND TWENTY-THREE
+
+###
+
+# Will return a negative number
+GET {{Path}}/-789
+// Result: NEGATIVE SEVEN-HUNDRED AND EIGHTY-NINE
+
+###
+
+# Will return an error for non-numbers
+GET {{Path}}/abc
 
 ###
