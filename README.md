@@ -52,6 +52,8 @@ npm run start
 > This will:
 > 1. Start the `dotnet` development server (listening on [http://localhost:5290](http://localhost:5290))
 > 2. Launch Vite, and spin up the React web page.
+>
+> You may also need to run `dotnet restore` beforehand, either in the root or in both `@number-to-words-api` folders.
 
 
 Open [http://localhost:5173](http://localhost:5173) in your web browser
