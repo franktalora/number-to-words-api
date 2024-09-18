@@ -101,9 +101,11 @@ public class NumberConverterUnitTests
   }
 
   [Fact]
-  public void NumberToWords_ShouldConvertNegativeNumbers()
+  public void NumberToWords_ShouldConvertNumber_Negatives()
   {
     Assert.Equal("NEGATIVE ONE", ConvertNumberToWords(-1));
+    Assert.Equal("NEGATIVE TWO", ConvertNumberToWords(-2));
+    Assert.Equal("NEGATIVE FOURTEEN", ConvertNumberToWords(-14));
     Assert.Equal("NEGATIVE THIRTY-FIVE", ConvertNumberToWords(-35));
     Assert.Equal("NEGATIVE TWO HUNDRED AND THIRTY", ConvertNumberToWords(-230));
     Assert.Equal("NEGATIVE FIVE THOUSAND ONE HUNDRED AND ONE", ConvertNumberToWords(-5101));
