@@ -60,7 +60,7 @@ const NumberConverter = ({
     <div className={`max-w-80 space-y-4 ${className}`} {...otherProps}>
       <input
         ref={inputRef}
-        placeholder="Enter a number"
+        placeholder="Enter a price"
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             const target = e.target as HTMLInputElement;
