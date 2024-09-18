@@ -79,7 +79,19 @@ const NumberConverter = ({
           e.target.value = getFormattedValue(e.target.value);
         }}
       />
-      <button onClick={setConvertedNumber}>Convert</button>
+      <div className="flex flex-row space-x-2 justify-center">
+        <button onClick={setConvertedNumber}>Convert</button>
+        <button
+          className="button-outline"
+          onClick={() => {
+            if (inputRef.current) inputRef.current.value = "";
+            onConvert(null);
+            setError("");
+          }}
+        >
+          Reset
+        </button>
+      </div>
       {error ? <p className="text-red-500">{error}</p> : null}
     </div>
   );
