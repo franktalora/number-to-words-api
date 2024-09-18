@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col items-center px-4 pt-8">
+      <div className="flex flex-col items-center px-4 pt-8 pb-2">
         <h1 className="pb-2">Price-to-word converter.</h1>
         <p className="mb-6 italic">Also known as Dollars to (Cent)ences</p>
         <p className="text-sm">Maximum value: 1 billion</p>
@@ -20,10 +20,10 @@ function App() {
               ...wordsArray,
             ]);
           }}
-          className="pt-4 pb-6"
+          className="pt-4"
         />
       </div>
-      <div className="flex flex-col overflow-y-scroll gap-3 px-4 pb-4 w-full items-center">
+      <div className="flex flex-col overflow-y-scroll gap-3 px-4 pb-4 pt-6 w-full items-center after:block after:absolute after:w-full after:h-6 after:-mt-6 after:bg-gradient-to-b after:from-gray-950">
         {wordsArray.map((data, index) => {
           return <WordsRow key={data.rowKey} {...data} isFirst={index === 0} />;
         })}
