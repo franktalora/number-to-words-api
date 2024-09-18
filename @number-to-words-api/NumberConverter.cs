@@ -16,24 +16,68 @@ public class NumberConverter
   {
     if (number == 0) return "ZERO";
 
-    // int numberIndex = number - 1;
+    if (number >= 1000) return GetThousands(number);
+
+    if (number >= 100) return GetHundreds(number);
+
+    return GetNumbers(number);
+  }
+
+  private class NumberMaps
+  {
+    public static readonly string[] Ones =
+      ["ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE"];
+    public static readonly string[] Teens =
+      ["ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN", "NINETEEN"];
+    public static readonly string[] Tens =
+        ["TEN", "TWENTY", "THIRTY", "FORTY", "FIFTY", "SIXTY", "SEVENTY", "EIGHTY", "NINETY"];
+    public static readonly string[] BigNumbers =
+        ["HUNDRED", "THOUSAND", "MILLION", "BILLION"];
+  }
+
+  private static string GetThousands(int number)
+  {
     string words = "";
 
-    // Get hundreds
-    if (number >= 100)
-    {
-      int rounded = number / 100; // Round down to the nearest one
-      string firstPart = NumberMaps.Ones[rounded - 1];
-      words += $"{firstPart} HUNDRED";
+    int thousands = number / 1000; // 205,123 = 205
+    int remainder = number % 1000; // 205,123 = 123
 
-      int remainder = number % 100;
-      if (remainder > 0)
-      {
-        words += " AND ";
-        number = remainder;
-      }
-      else return words;
+    if (thousands >= 100)
+      words += GetHundreds(thousands) + " "; // TWO HUNDRED
+    else if (thousands > 0)
+      words += GetNumbers(thousands) + " "; // TWO
+
+    int exponent = (int)Math.Floor(Math.Log10(number) / 3);
+    words += NumberMaps.BigNumbers[exponent]; // THOUSAND
+
+    if (remainder >= 100)
+      words += $" {GetHundreds(remainder)}"; // ONE HUNDRED AND TWENTY-THREE
+    else if (remainder > 0)
+      words += $" AND {GetNumbers(remainder)}"; // AND TWENTY-THREE
+
+    return words;
+  }
+
+  private static string GetHundreds(int number)
+  {
+    string words = "";
+
+    int rounded = number / 100; // Round down to the nearest one
+    string firstPart = NumberMaps.Ones[rounded - 1]; // ONE
+    words += $"{firstPart} {NumberMaps.BigNumbers[0]}"; // ONE HUNDRED
+
+    int remainder = number % 100; // TWENTY-THREE
+    if (remainder > 0)
+    {
+      words += $" AND {GetNumbers(remainder)}"; // ONE HUNDRED AND TWENTY-THREE
     }
+
+    return words;
+  }
+
+  private static string GetNumbers(int number)
+  {
+    string words = "";
 
     // Get ones (1 to 9)
     if (number <= 9) words += NumberMaps.Ones[number - 1];
@@ -58,18 +102,6 @@ public class NumberConverter
     }
 
     return words;
-  }
-
-  private class NumberMaps
-  {
-    public static readonly string[] Ones =
-      ["ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE"];
-    public static readonly string[] Teens =
-      ["ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN", "NINETEEN"];
-    public static readonly string[] Tens =
-        ["TEN", "TWENTY", "THIRTY", "FORTY", "FIFTY", "SIXTY", "SEVENTY", "EIGHTY", "NINETY"];
-    public static readonly string[] BigNumbers =
-        ["HUNDRED", "THOUSAND", "MILLION", "BILLION"];
   }
 
   private static (int, int) SeparateDouble(double number)
