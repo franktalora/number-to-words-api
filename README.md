@@ -4,11 +4,16 @@
 
 > Also known as: "Dollars to (Cent)ences"
 
-## Description
+A simple web page that converts a numerical value into a price. 
 
-A web page that converts a numerical value into a price. 
+**What's on offer?**
+  - A web user interface in React to allow the conversion to be tested interactively
+  - Input numbers and convert them to a price, both written (in caps) and in numerical form
+    - eg. `123.45678` converts to `$123.46` and `ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-SIX CENTS`
+  - Copy your converted numbers into your clipboard
+  - A history of your conversions (reset on refresh or upon clicking 'Reset')
 
-## Tech Stack
+## Stack
 
 **Front End:** 
   - React
@@ -60,6 +65,15 @@ Run `dotnet test` in the root or in `/@number-to-words-api-tests`
 This will run several unit tests to test both the Number and Price converters. The testing tool used is [xUnit](https://xunit.net/).
 
 <img width="400" alt="Screenshot 2024-09-18 at 4 31 09 PM" src="https://github.com/user-attachments/assets/1738bb3a-9f50-498d-906c-3ec633e5580a">
+
+The test plan here is to ensure both number conversion (`123` -> `ONE HUNDRED AND TWENTY-THREE`) and price conversion (`1.50` -> `ONE DOLLAR AND FIFTY CENTS`).
+
+So, whenever we run our endpoint on the frontend and input a valid `number`, we expect it to return with the number that was input, and the converted words.
+
+> [!IMPORTANT]  
+> TODO: Implement frontend tests.
+> UI components would benefit from some (Jest) tests:
+> Things such as number formatting (`123.45678` -> `$123.46`), copy to clipboard, and conversion history, are handled via JS.
 
 
 ## Created by Frank Talora
