@@ -2,16 +2,6 @@ namespace NumberToWordsAPI;
 
 public class NumberConverter
 {
-  public static string ConvertPriceToWords(double number)
-  {
-    (int dollars, int cents) = SeparateDouble(number < 0 ? -number : number);
-
-    string dollarAffix = number > 1 ? "DOLLARS" : "DOLLAR";
-    string dollarString = $"{dollars} {dollarAffix}";
-
-    return dollarString;
-  }
-
   public static string ConvertNumberToWords(int number)
   {
     if (number == 0) return "ZERO";
@@ -113,15 +103,6 @@ public class NumberConverter
     }
 
     return words;
-  }
-
-  private static (int, int) SeparateDouble(double number)
-  {
-    int integerPart = (int)Math.Floor(number);
-    // Don't forget about floats here. 12.45 - 12 = 0.4499999999999993. So we round up, to two digits.
-    int decimalPart = (int)Math.Round((number - integerPart) * 100, 2);
-
-    return (integerPart, decimalPart);
   }
 
   private static bool IsMultipleOfTen(int number)

@@ -11,7 +11,7 @@ public class Program
 
     app.MapGet("/number-to-words-api/convert-price/{number}", (double number) =>
     {
-      string words = NumberConverter.ConvertPriceToWords(number);
+      string words = PriceConverter.ConvertPriceToWords(number);
       return new { number, words };
     })
     .WithName("ConvertPriceToWords");

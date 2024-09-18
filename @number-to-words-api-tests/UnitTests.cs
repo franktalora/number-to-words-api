@@ -2,8 +2,9 @@ namespace Tests;
 
 using Xunit;
 using static NumberToWordsAPI.NumberConverter;
+using static NumberToWordsAPI.PriceConverter;
 
-public class UnitTests
+public class NumberConverterUnitTests
 {
   [Fact]
   public void NumberToWords_ShouldConvertZero()
@@ -61,7 +62,7 @@ public class UnitTests
     Assert.Equal("FIVE HUNDRED AND ELEVEN", ConvertNumberToWords(511));
     Assert.Equal("NINE HUNDRED AND NINETY-NINE", ConvertNumberToWords(999));
   }
-  
+
   [Fact]
   public void NumberToWords_ShouldConvertNumber_Thousand()
   {
@@ -91,67 +92,77 @@ public class UnitTests
     Assert.Equal("EIGHT MILLION ONE HUNDRED AND TWENTY-FIVE THOUSAND AND THIRTEEN", ConvertNumberToWords(8125013));
     Assert.Equal("SEVEN HUNDRED AND SEVENTY-SEVEN MILLION ONE HUNDRED AND TWENTY-FIVE THOUSAND NINE HUNDRED AND NINETY-NINE", ConvertNumberToWords(777125999));
   }
-  
+
   [Fact]
   public void NumberToWords_ShouldConvertNumber_Billion()
   {
     Assert.Equal("ONE BILLION", ConvertNumberToWords(1000000000));
-    Assert.Equal("TWO BILLION", ConvertNumberToWords(2000000000));  }
+    Assert.Equal("TWO BILLION", ConvertNumberToWords(2000000000));
+  }
 
-  // [Fact]
-  // public void PriceToWords_ShouldConvertDollars()
-  // {
-  //   Assert.Equal("ONE DOLLAR", ConvertPriceToWords(1));
-  //   Assert.Equal("ONE DOLLAR", ConvertPriceToWords(1.00));
-  //   Assert.Equal("FIVE DOLLARS", ConvertPriceToWords(5));
-  //   Assert.Equal("FIFTEEN DOLLARS", ConvertPriceToWords(15));
-  //   Assert.Equal("TWENTY-EIGHT DOLLARS", ConvertPriceToWords(28));
-  //   Assert.Equal("TWENTY-EIGHT DOLLARS", ConvertPriceToWords(28.000));
-  //   Assert.Equal("ONE HUNDRED AND TWENTY-THREE DOLLARS", ConvertPriceToWords(123));
-  //   Assert.Equal("ONE HUNDRED AND THREE DOLLARS", ConvertPriceToWords(103));
-  // }
+  [Fact]
+  // Will return an error for non-numbers
+  public void NumberToWords_ShouldThrow_ForNonNumber()
+  {
+    object invalidInput = "invalid";
+    Assert.Throws<InvalidCastException>(() => ConvertNumberToWords((int)invalidInput));
+  }
+}
 
-  // [Fact]
-  // public void PriceToWords_ShouldConvertDollars_ForMultipleOfTen()
-  // {
-  //   Assert.Equal("TEN DOLLARS", ConvertPriceToWords(10));
-  //   Assert.Equal("ONE HUNDRED DOLLARS", ConvertPriceToWords(100));
-  //   Assert.Equal("ONE HUNDRED AND FIFTY DOLLARS", ConvertPriceToWords(150));
-  //   Assert.Equal("ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY CENTS", ConvertPriceToWords(123.40));
-  //   Assert.Equal("ONE HUNDRED AND TWENTY DOLLARS", ConvertPriceToWords(120));
-  // }
+public class PriceConverterUnitTests {
+  [Fact]
+  public void PriceToWords_ShouldConvertDollars()
+  {
+    Assert.Equal("ONE DOLLAR", ConvertPriceToWords(1));
+    Assert.Equal("ONE DOLLAR", ConvertPriceToWords(1.00));
+    Assert.Equal("FIVE DOLLARS", ConvertPriceToWords(5));
+    Assert.Equal("FIFTEEN DOLLARS", ConvertPriceToWords(15));
+    Assert.Equal("TWENTY-EIGHT DOLLARS", ConvertPriceToWords(28));
+    Assert.Equal("TWENTY-EIGHT DOLLARS", ConvertPriceToWords(28.000));
+    Assert.Equal("ONE HUNDRED AND TWENTY-THREE DOLLARS", ConvertPriceToWords(123));
+    Assert.Equal("ONE HUNDRED AND THREE DOLLARS", ConvertPriceToWords(103));
+  }
 
-  // [Fact]
-  // public void PriceToWords_ShouldConvertCents()
-  // {
-  //   Assert.Equal("ONE HUNDRED AND TWENTY-THREE DOLLARS AND ONE CENT", ConvertPriceToWords(123.01));
-  //   Assert.Equal("ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS", ConvertPriceToWords(123.45));
-  //   Assert.Equal("ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS", ConvertPriceToWords(123.45272));
-  // }
+  [Fact]
+  public void PriceToWords_ShouldConvertDollars_ForMultipleOfTen()
+  {
+    Assert.Equal("TEN DOLLARS", ConvertPriceToWords(10));
+    Assert.Equal("ONE HUNDRED DOLLARS", ConvertPriceToWords(100));
+    Assert.Equal("ONE HUNDRED AND FIFTY DOLLARS", ConvertPriceToWords(150));
+    Assert.Equal("ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY CENTS", ConvertPriceToWords(123.40));
+    Assert.Equal("ONE HUNDRED AND TWENTY DOLLARS", ConvertPriceToWords(120));
+  }
 
-  // [Fact]
-  // public void PriceToWords_ShouldConvertNegativeNumber()
-  // {
-  //   Assert.Equal("NEGATIVE ONE DOLLAR AND FORTY-FIVE CENTS", ConvertPriceToWords(-1.45));
-  //   Assert.Equal("NEGATIVE ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS", ConvertPriceToWords(-123.45));
-  // }
+  [Fact]
+  public void PriceToWords_ShouldConvertCents()
+  {
+    Assert.Equal("ONE HUNDRED AND TWENTY-THREE DOLLARS AND ONE CENT", ConvertPriceToWords(123.01));
+    Assert.Equal("ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS", ConvertPriceToWords(123.45));
+    Assert.Equal("ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS", ConvertPriceToWords(123.45272));
+  }
 
-  // [Fact]
-  // public void PriceToWords_ShouldConvertCents_OnlyCents()
-  // {
-  //   Assert.Equal("ONE CENT", ConvertPriceToWords(.01));
-  //   Assert.Equal("TEN CENTS", ConvertPriceToWords(.1));
-  //   Assert.Equal("FORTY-FIVE CENTS", ConvertPriceToWords(.45));
-  //   Assert.Equal("FORTY-FIVE CENTS", ConvertPriceToWords(00.45));
-  //   Assert.Equal("FORTY-FIVE CENTS", ConvertPriceToWords(00.45272));
-  // }
+  [Fact]
+  public void PriceToWords_ShouldConvertNegativeNumber()
+  {
+    Assert.Equal("NEGATIVE ONE DOLLAR AND FORTY-FIVE CENTS", ConvertPriceToWords(-1.45));
+    Assert.Equal("NEGATIVE ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS", ConvertPriceToWords(-123.45));
+  }
 
-  // [Fact]
-  // // Will return an error for non-numbers
-  // public void NumberToWords_ShouldThrow_ForNonNumber()
-  // {
-  //   object invalidInput = "invalid";
-  //   Assert.Throws<InvalidCastException>(() => ConvertNumberToWords((int)invalidInput));
-  //   Assert.Throws<InvalidCastException>(() => ConvertPriceToWords((int)invalidInput));
-  // }
+  [Fact]
+  public void PriceToWords_ShouldConvertCents_OnlyCents()
+  {
+    Assert.Equal("ONE CENT", ConvertPriceToWords(.01));
+    Assert.Equal("TEN CENTS", ConvertPriceToWords(.1));
+    Assert.Equal("FORTY-FIVE CENTS", ConvertPriceToWords(.45));
+    Assert.Equal("FORTY-FIVE CENTS", ConvertPriceToWords(00.45));
+    Assert.Equal("FORTY-FIVE CENTS", ConvertPriceToWords(00.45272));
+  }
+
+  [Fact]
+  // Will return an error for non-numbers
+  public void PriceToWords_ShouldThrow_ForNonNumber()
+  {
+    object invalidInput = "invalid";
+    Assert.Throws<InvalidCastException>(() => ConvertPriceToWords((int)invalidInput));
+  }
 }
