@@ -44,3 +44,9 @@ I also find it a lot quicker and easier to whip up a decent-looking UI. I wouldn
 
 > I may also consider Styled Components, which makes managing smaller React components a bit easier, especially when they need to be re-used.
 > However, I once implemented Tailwind into styled components for a React Native project.
+
+# Other things I considered...
+  - File/folder name conventions
+    - Honestly wasn't sure what convention to use for the backend project. In future C# projects, I will use PascalCase, since that seems to be the standard.
+  - An `env` file to store things globally, such as the API URI
+    - Although helpful, I found this unnecessary since this project is already super simple
