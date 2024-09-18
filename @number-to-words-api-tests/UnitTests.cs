@@ -101,6 +101,18 @@ public class NumberConverterUnitTests
   }
 
   [Fact]
+  public void NumberToWords_ShouldConvertNegativeNumbers()
+  {
+    Assert.Equal("NEGATIVE ONE", ConvertNumberToWords(-1));
+    Assert.Equal("NEGATIVE THIRTY-FIVE", ConvertNumberToWords(-35));
+    Assert.Equal("NEGATIVE TWO HUNDRED AND THIRTY", ConvertNumberToWords(-230));
+    Assert.Equal("NEGATIVE FIVE THOUSAND ONE HUNDRED AND ONE", ConvertNumberToWords(-5101));
+    Assert.Equal("NEGATIVE EIGHT MILLION ONE HUNDRED AND TWENTY-FIVE THOUSAND AND THIRTEEN", ConvertNumberToWords(-8125013));
+    Assert.Equal("NEGATIVE SEVEN HUNDRED AND SEVENTY-SEVEN MILLION ONE HUNDRED AND TWENTY-FIVE THOUSAND NINE HUNDRED AND NINETY-NINE", ConvertNumberToWords(-777125999));
+    Assert.Equal("NEGATIVE ONE BILLION", ConvertNumberToWords(-1000000000));
+  }
+
+  [Fact]
   // Will return an error for non-numbers
   public void NumberToWords_ShouldThrow_ForNonNumber()
   {
@@ -109,7 +121,8 @@ public class NumberConverterUnitTests
   }
 }
 
-public class PriceConverterUnitTests {
+public class PriceConverterUnitTests
+{
   [Fact]
   public void PriceToWords_ShouldConvertDollars()
   {

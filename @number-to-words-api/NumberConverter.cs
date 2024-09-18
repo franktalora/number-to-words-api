@@ -6,13 +6,24 @@ public class NumberConverter
   {
     if (number == 0) return "ZERO";
 
-    if (number >= (int)BigNumberType.Billions) return GetBigNumber(number, BigNumberType.Billions);
-    if (number >= (int)BigNumberType.Millions) return GetBigNumber(number, BigNumberType.Millions);
-    if (number >= (int)BigNumberType.Thousands) return GetBigNumber(number, BigNumberType.Thousands);
+    string words = "";
+    if (number < 0)
+    {
+      words = "NEGATIVE ";
+      number = Math.Abs(number);
+    }
 
-    if (number >= 100) return GetHundreds(number);
+    if (number >= (int)BigNumberType.Billions) 
+      return words + GetBigNumber(number, BigNumberType.Billions);
+    if (number >= (int)BigNumberType.Millions) 
+      return words + GetBigNumber(number, BigNumberType.Millions);
+    if (number >= (int)BigNumberType.Thousands) 
+      return words + GetBigNumber(number, BigNumberType.Thousands);
 
-    return GetNumbers(number);
+    if (number >= 100) 
+      return words + GetHundreds(number);
+
+    return words + GetNumbers(number);
   }
 
   private class NumberMaps
