@@ -8,24 +8,31 @@ public class PriceConverter
   {
     (int dollars, int cents) = SeparateDouble(number);
 
-    // DOLLARS $$$
-    string dollarWords = ConvertNumberToWords(dollars);
-    string dollarAffix = Math.Abs(dollars) > 1 ? "DOLLARS" : "DOLLAR";
-    string dollarString = $"{dollarWords} {dollarAffix}";
+    string dollarString = "";
+    string centString = "";
 
-    string words = dollarString;
+    // DOLLARS $$$
+    int positiveDollars = Math.Abs(dollars);
+    if (positiveDollars > 0)
+    {
+      string dollarWords = ConvertNumberToWords(dollars);
+      string dollarAffix = positiveDollars > 1 ? "DOLLARS" : "DOLLAR";
+      dollarString = $"{dollarWords} {dollarAffix}";
+    }
 
     // CENTS ¢¢¢
     if (cents > 0)
     {
       string centWords = ConvertNumberToWords(cents);
       string centAffix = cents > 1 ? "CENTS" : "CENT";
-      string centString = $"{centWords} {centAffix}";
-
-      words = $"{dollarString} AND {centString}";
+      centString = $"{centWords} {centAffix}";
     }
 
-    return words;
+
+    if (dollarString == "") return centString;
+    if (centString == "") return dollarString;
+    
+    return $"{dollarString} AND {centString}";
   }
 
   private static (int, int) SeparateDouble(double number)
