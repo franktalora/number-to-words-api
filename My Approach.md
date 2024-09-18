@@ -1,6 +1,17 @@
 
 A document outlining the reasons why I selected my approach, and why I decided against other possible solutions.
 
+# How did I achieve the Submission Requirements?
+1. *Produce the quality of work and user interface that you’d consider acceptable for a customer*
+  -  For the user interface, I've made use of Tailwind to help produce a decent-looking UI. It just made it a lot faster/convenient for me to do.
+  -  I've also considered several other aspects that would be helpful for a user, such as the ability to copy the converted words to clipboard, and a 'history' of current conversions.
+  -  Other aspects of UX have been thoroughly kept-in-mind, such as accessibility: contrast of colours, 'convert' button is clear, input is readable.
+2. *Don’t use the internet to find part of, or the whole, solution. We’re familiar with solutions from the internet and we’re keen to assess your unique analysis, design and coding skills.*
+  - As I have not formally worked with C#, referring to online documentation was unavoidable. I required guidance on setting up the project with `dotnet`, running it, implementing tests, as well as getting C# Dev Kit to work in VS Code.
+  - The actual money and price converter functions were designed and written by me. Again, some Googling and ChatGPTing was required to figure out certain things, such as how to run specific Math functions in C# (they differ somewhat to JS), and language specs, such as types and using namespaces. VS Code plugins made other things, such as formatting, convenient.
+3. *Please come up with your own solution/algorithm by not using any existing libraries, nuget packages, or generative AI*
+  - Again, the money/price conversion algorithms, as well as the entire React/JS UI, were created by me. I approached the algorithms the same as if I were to write them in TypeScript.
+
 # Why C#/.NET?
 
 I decided on using C# for the backend because:
