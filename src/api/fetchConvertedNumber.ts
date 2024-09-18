@@ -1,6 +1,6 @@
 export type ConvertedNumberDataProps = {
   words: string;
-  number: string;
+  number: number;
 }
 
 export const fetchConvertedNumber = async (numberToConvert: string) => {

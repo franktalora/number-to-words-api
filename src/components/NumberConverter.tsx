@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import {
   ConvertedNumberDataProps,
   fetchConvertedNumber,
-} from "../utils/fetchConvertedNumber";
+} from "../api/fetchConvertedNumber";
 
 interface NumberConverterProps extends React.HTMLAttributes<HTMLDivElement> {
   onConvert: (data: ConvertedNumberDataProps | null) => void;
