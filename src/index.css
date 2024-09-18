@@ -38,11 +38,11 @@ body,
 }
 
 body {
-  @apply flex bg-gray-950;
+  @apply flex bg-gray-950 overflow-hidden;
 }
 
 #root {
-  @apply flex flex-col items-center justify-center text-center;
+  @apply flex flex-col items-center text-center;
 }
 
 h1 {
