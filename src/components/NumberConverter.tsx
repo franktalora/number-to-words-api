@@ -6,6 +6,7 @@ import {
 
 interface NumberConverterProps extends React.HTMLAttributes<HTMLDivElement> {
   onConvert: (data: ConvertedNumberDataProps | null) => void;
+  onReset: () => void;
 }
 
 // Max number is 1 billion, since anything over doesn't work atm
@@ -26,6 +27,7 @@ const getFormattedValue = (value: string): string => {
 
 const NumberConverter = ({
   onConvert,
+  onReset,
   className = "",
   ...otherProps
 }: NumberConverterProps) => {
@@ -87,6 +89,7 @@ const NumberConverter = ({
             if (inputRef.current) inputRef.current.value = "";
             onConvert(null);
             setError("");
+            onReset();
           }}
         >
           Reset
