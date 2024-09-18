@@ -40,7 +40,13 @@ Vite doesn't support Jest out-of-the-box, and so needed some manual setting up t
 
 > Manual configuration of Jest is honestly time-consuming, as it has a tonne of configuration knobs you need to set manually.
 > Not only that, but you need to introduce babel, which also requires more manual tweaking.
-> So, ultimately, I decided against implementing it for now. I've left a TODO note in the readme to note for future. 
+> So, ultimately, I decided against implementing it for now. I've left a TODO note in the readme to note for future.
+
+# Why Vite for the frontend?
+
+From experience, Vite makes it easy to get a simple React website up and running. 
+
+There are other solutions, such as Next.JS, Gatsby, Webpack, etc. but these are designed for more complex projects (especially Next). I have used all of these in the past, and Vite was always the go-to for a straightforward project such as this one. It ultimately proved itself to work quite well with .NET as well.
 
 # Why Fetch API for data retrieval?
 
