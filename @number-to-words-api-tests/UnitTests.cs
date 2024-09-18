@@ -72,6 +72,7 @@ public class UnitTests
     Assert.Equal("NINE THOUSAND", ConvertNumberToWords(9000));
     Assert.Equal("TWO THOUSAND THREE HUNDRED", ConvertNumberToWords(2300));
     Assert.Equal("FIVE THOUSAND ONE HUNDRED AND ONE", ConvertNumberToWords(5101));
+    Assert.Equal("FIVE THOUSAND AND ELEVEN", ConvertNumberToWords(5011));
     Assert.Equal("NINE THOUSAND NINE HUNDRED AND NINETY-NINE", ConvertNumberToWords(9999));
     Assert.Equal("ONE THOUSAND AND TWENTY-THREE", ConvertNumberToWords(1023));
     Assert.Equal("ONE HUNDRED AND FIVE THOUSAND ONE HUNDRED AND TWENTY-THREE", ConvertNumberToWords(105123));
@@ -85,7 +86,17 @@ public class UnitTests
   {
     Assert.Equal("ONE MILLION", ConvertNumberToWords(1000000));
     Assert.Equal("TWO MILLION", ConvertNumberToWords(2000000));
+    Assert.Equal("ONE MILLION TWO HUNDRED AND TWENTY-THREE", ConvertNumberToWords(1000223));
+    Assert.Equal("SIX MILLION FIVE THOUSAND ONE HUNDRED AND ONE", ConvertNumberToWords(6005101));
+    Assert.Equal("EIGHT MILLION ONE HUNDRED AND TWENTY-FIVE THOUSAND AND THIRTEEN", ConvertNumberToWords(8125013));
+    Assert.Equal("SEVEN HUNDRED AND SEVENTY-SEVEN MILLION ONE HUNDRED AND TWENTY-FIVE THOUSAND NINE HUNDRED AND NINETY-NINE", ConvertNumberToWords(777125999));
   }
+  
+  [Fact]
+  public void NumberToWords_ShouldConvertNumber_Billion()
+  {
+    Assert.Equal("ONE BILLION", ConvertNumberToWords(1000000000));
+    Assert.Equal("TWO BILLION", ConvertNumberToWords(2000000000));  }
 
   // [Fact]
   // public void PriceToWords_ShouldConvertDollars()

@@ -16,7 +16,9 @@ public class NumberConverter
   {
     if (number == 0) return "ZERO";
 
-    if (number >= 1000) return GetThousands(number);
+    if (number >= (int)BigNumberType.Billions) return GetBigNumber(number, BigNumberType.Billions);
+    if (number >= (int)BigNumberType.Millions) return GetBigNumber(number, BigNumberType.Millions);
+    if (number >= (int)BigNumberType.Thousands) return GetBigNumber(number, BigNumberType.Thousands);
 
     if (number >= 100) return GetHundreds(number);
 
@@ -35,22 +37,31 @@ public class NumberConverter
         ["HUNDRED", "THOUSAND", "MILLION", "BILLION"];
   }
 
-  private static string GetThousands(int number)
+  private enum BigNumberType
+  {
+    Thousands = 1000,
+    Millions = 1000000,
+    Billions = 1000000000
+  }
+
+  private static string GetBigNumber(int number, BigNumberType numberType)
   {
     string words = "";
 
-    int thousands = number / 1000; // 205,123 = 205
-    int remainder = number % 1000; // 205,123 = 123
+    int divider = number / (int)numberType; // 6,005,123 = 6
+    int remainder = number % (int)numberType; // 6,105,123 = 105,123
 
-    if (thousands >= 100)
-      words += GetHundreds(thousands) + " "; // TWO HUNDRED
-    else if (thousands > 0)
-      words += GetNumbers(thousands) + " "; // TWO
+    if (divider >= 100)
+      words += GetHundreds(divider) + " "; // SIX HUNDRED
+    else
+      words += GetNumbers(divider) + " "; // SIX
 
     int exponent = (int)Math.Floor(Math.Log10(number) / 3);
-    words += NumberMaps.BigNumbers[exponent]; // THOUSAND
+    words += NumberMaps.BigNumbers[exponent]; // MILLION
 
-    if (remainder >= 100)
+    if (remainder >= (int)BigNumberType.Thousands)
+      words += $" {GetBigNumber(remainder, BigNumberType.Thousands)}"; // ONE THOUSAND ONE HUNDRED AND TWENTY-THREE
+    else if (remainder >= 100)
       words += $" {GetHundreds(remainder)}"; // ONE HUNDRED AND TWENTY-THREE
     else if (remainder > 0)
       words += $" AND {GetNumbers(remainder)}"; // AND TWENTY-THREE
