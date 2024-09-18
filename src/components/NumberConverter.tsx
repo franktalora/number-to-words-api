@@ -4,7 +4,7 @@ import {
   fetchConvertedNumber,
 } from "../utils/fetchConvertedNumber";
 
-interface NumberConverterProps {
+interface NumberConverterProps extends React.HTMLAttributes<HTMLDivElement> {
   onConvert: (data: ConvertedNumberDataProps | null) => void;
 }
 
@@ -12,14 +12,28 @@ interface NumberConverterProps {
 // TODO: Fix number converter to parse 1 billion+
 const MAX_VALUE = 1000000000;
 
-const getParsedValue = (value: string) => parseFloat(value.replace("$", ""));
+const getFormattedValue = (value: string): string => {
+  let parsedValue = parseFloat(value.replace("$", ""));
+  if (isNaN(parsedValue)) return value;
 
-const NumberConverter = ({ onConvert }: NumberConverterProps) => {
+  if (parsedValue > MAX_VALUE) {
+    parsedValue = MAX_VALUE;
+  }
+
+  // Format the value to 2 decimal places
+  return "$" + parsedValue.toFixed(2).replace(/\.00$/, "");
+};
+
+const NumberConverter = ({
+  onConvert,
+  className = "",
+  ...otherProps
+}: NumberConverterProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState("");
 
-  const getConvertedNumber = async () => {
-    const value = inputRef.current?.value;
+  const setConvertedNumber = async () => {
+    const value = inputRef.current?.value.replace("$", "");
     if (!value) {
       onConvert(null);
       return;
@@ -41,13 +55,20 @@ const NumberConverter = ({ onConvert }: NumberConverterProps) => {
   };
 
   return (
-    <>
+    <div className={`max-w-80 space-y-4 ${className}`} {...otherProps}>
       <input
         ref={inputRef}
         placeholder="Enter a number"
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            const target = e.target as HTMLInputElement;
+            target.value = getFormattedValue(target.value);
+            setConvertedNumber();
+          }
+        }}
         onChange={(e) => {
-          const value = e.target.value;
-          const parsedValue = getParsedValue(value);
+          const value = e.target.value.replace("$", "");
+          const parsedValue = parseFloat(value);
           if (!!value && isNaN(parsedValue)) {
             setError("Only number digits can be converted");
           } else {
@@ -55,21 +76,12 @@ const NumberConverter = ({ onConvert }: NumberConverterProps) => {
           }
         }}
         onBlur={(e) => {
-          const parsedValue = getParsedValue(e.target.value);
-          if (isNaN(parsedValue)) return;
-
-          if (parsedValue > MAX_VALUE) {
-            e.target.value = String(MAX_VALUE);
-          } else {
-            // Format the value to 2 decimal places
-            e.target.value = parsedValue.toFixed(2);
-          }
-
+          e.target.value = getFormattedValue(e.target.value);
         }}
       />
-      <button onClick={getConvertedNumber}>Convert</button>
+      <button onClick={setConvertedNumber}>Convert</button>
       {error ? <p className="text-red-500">{error}</p> : null}
-    </>
+    </div>
   );
 };
 
