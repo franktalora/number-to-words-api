@@ -3,14 +3,14 @@ A document outlining the reasons why I selected my approach, and why I decided a
 
 # How did I achieve the Submission Requirements?
 1. *Produce the quality of work and user interface that you’d consider acceptable for a customer*
-  -  For the user interface, I've made use of Tailwind to help produce a decent-looking UI. It just made it a lot faster/convenient for me to do.
+  -  For the user interface, I've made use of Tailwind to help produce a decent-looking UI. Tailwind also made it a lot faster/convenient for me to produce.
   -  I've also considered several other aspects that would be helpful for a user, such as the ability to copy the converted words to clipboard, and a 'history' of current conversions.
   -  Other aspects of UX have been thoroughly kept-in-mind, such as accessibility: contrast of colours, 'convert' button is clear, input is readable.
 2. *Don’t use the internet to find part of, or the whole, solution. We’re familiar with solutions from the internet and we’re keen to assess your unique analysis, design and coding skills.*
-  - As I have not formally worked with C#, referring to online documentation was unavoidable. I required guidance on setting up the project with `dotnet`, running it, implementing tests, as well as getting C# Dev Kit to work in VS Code.
+  - As I have not *formally* worked with C#, referring to online documentation was unavoidable. I required guidance on setting up the project with `dotnet`, running it, implementing tests, as well as getting C# Dev Kit to work in VS Code.
   - The actual money and price converter functions were designed and written by me. Again, some Googling and ChatGPTing was required to figure out certain things, such as how to run specific Math functions in C# (they differ somewhat to JS), and language specs, such as types and using namespaces. VS Code plugins made other things, such as formatting, convenient.
 3. *Please come up with your own solution/algorithm by not using any existing libraries, nuget packages, or generative AI*
-  - Again, the money/price conversion algorithms, as well as the entire React/JS UI, were created by me. I approached the algorithms the same as if I were to write them in TypeScript.
+  - Again, the money/price conversion algorithms, as well as the entire React/JS UI, were created by me. I approached the algorithms the same as if I were to write them in TypeScript. The UI-building aspect was straightforward.
 
 # Why C#/.NET?
 
@@ -63,6 +63,8 @@ I also find it a lot quicker and easier to whip up a decent-looking UI. I wouldn
 > However, I once implemented Tailwind into styled components for a React Native project.
 
 # Other things I considered...
+  - Complexity
+    - Throughout building this project, I considered if it was "too complex". However, I took into account the ample time I was offered, as well as the opportunity to simply "show off". However, I know perfectionism is quite often unnecessary and time-consuming, and it's always a good practice to not hyperfocus on a single context. As a result, I've left this project "as-is", with some evident rough edges, to show that I can leave things be while also producing a good result in a short timeframe.
   - File/folder name conventions
     - Honestly wasn't sure what convention to use for the backend project. In future C# projects, I will use PascalCase, since that seems to be the standard.
   - An `env` file to store things globally, such as the API URI
