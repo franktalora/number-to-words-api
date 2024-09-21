@@ -77,6 +77,15 @@ So, whenever we run our endpoint on the frontend and input a valid `number`, we 
 > UI components would benefit from some (Jest) tests:
 > Things such as number formatting (`123.45678` -> `$123.46`), copy to clipboard, and conversion history, are handled via JS.
 
+In the UI interface, numbers input into the text box will be converted into words upon clicking 'Convert'. 
+
+**Some things to note:**
+  - Numbers with a dollar sign at the start will work and can be converted
+  - Decimals will be rounded to 2 demical places
+    - `12.45678` -> `$12.46` / `TWELVE DOLLARS AND FORTY-SIX CENTS`
+  - Conversions will be appended to the 'history' list, which can be scrolled if it exceeds window limit. It is infinite.
+  - If any number input exceeds 1 billion, the current max, the number will be set to 1 billion and will return `ONE BILLION DOLLARS`.
+  - Hitting "Enter" while the input is focused will also trigger conversion.
 
 ## Created by Frank Talora
 
